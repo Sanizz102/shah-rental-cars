@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shah Rental Cars Tonga | Explore Tongatapu</title>
+    <script src="https://emea01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fcdn.tailwindcss.com%2F&data=05%7C02%7C%7Cc703d0739c824e4d0d5008df404d9dc0%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639300374231240420%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=P%2BI%2Bv7oNN%2FScttP%2FThsjUn46xtG9UO5z5%2BygkIkej5E%3D&reserved=0"></script>
+    <link rel="stylesheet" href="https://emea01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fcdnjs.cloudflare.com%2Fajax%2Flibs%2Ffont-awesome%2F6.4.0%2Fcss%2Fall.min.css&data=05%7C02%7C%7Cc703d0739c824e4d0d5008df404d9dc0%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639300374231260768%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=bFI77usQ8cESt%2BYr1IKpKanxjawiFxEe5uEaRK1bvOo%3D&reserved=0">
+    <style>
+        @import url('https://emea01.safelinks.protection.outlook.com/?url=https%3A%2F%2Ffonts.googleapis.com%2Fcss2%3Ffamily%3DInter%3Awght%40300%3B400%3B500%3B600%3B700%26display%3Dswap&data=05%7C02%7C%7Cc703d0739c824e4d0d5008df404d9dc0%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639300374231273347%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=FAmI2TTsa9wXUiAlN7MD4LAeXTx%2Fx8RdZt4ixIPpwtE%3D&reserved=0');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        :root {
+            --black: #111111;
+            --gold: #d4af37;
+            --white: #f8f8f8;
+        }
+
+        body {
+            background-color: var(--white);
+            color: var(--black);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, #111111 0%, #222222 100%);
+        }
+
+        .gold-text {
+            color: var(--gold);
+        }
+
+        .gold-bg {
+            background-color: var(--gold);
+        }
+
+        .black-bg {
+            background-color: var(--black);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .car-img {
+            height: 220px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .nav-link {
+            position: relative;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="bg-white shadow-md fixed w-full top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center py-3">
+            <div class="flex items-center space-x-3">
+                <img src="logo.png" alt="Shah Rental Cars Tonga Logo" class="h-14 w-auto rounded-lg">
+                <div>
+                    <span class="text-xl font-bold text-gray-800">Shah Rental Cars</span>
+                    <p class="text-xs text-gray-500">Tongatapu, Tonga</p>
+                </div>
+            </div>
+
+            <div class="hidden md:flex items-center space-x-8">
+                <a href="#home" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Home</a>
+                <a href="#fleet" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Our Fleet</a>
+                <a href="#about" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">About</a>
+                <a href="#contact" class="nav-link text-gray-700 hover:text-yellow-600 font-medium">Book Now</a>
+                <button onclick="openAdminLogin()" class="text-sm text-gray-500 hover:text-yellow-600">Admin</button>
+            </div>
+
+            <button class="md:hidden text-xl text-gray-700" onclick="toggleMobileMenu()">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="mobileMenu" class="hidden md:hidden bg-white border-t">
+        <div class="px-4 py-3 space-y-3">
+            <a href="#home" class="block py-2 text-gray-700">Home</a>
+            <a href="#fleet" class="block py-2 text-gray-700">Our Fleet</a>
+            <a href="#about" class="block py-2 text-gray-700">About</a>
+            <a href="#contact" class="block py-2 text-gray-700">Book Now</a>
+            <button onclick="openAdminLogin()" class="block py-2 text-gray-500">Admin Login</button>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero-gradient min-h-screen flex items-center pt-20">
+    <div class="max-w-7xl mx-auto px-4 py-20">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-white">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">
+                    Explore the Kingdom of Tonga 🇹🇴
+                </h1>
+                <p class="text-lg text-gray-300 mb-8">
+                    Reliable • Affordable • Convenient — Serving Maufanga, Tongatapu and beyond. Airport delivery available!
+                </p>
+
+                <div class="flex flex-wrap gap-4 mb-8">
+                    <a href="#fleet" class="gold-bg hover:opacity-90 text-gray-900 font-semibold px-8 py-3 rounded-lg shadow-lg">
+                        View Our Fleet
+                    </a>
+                    <a href="#contact" class="border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500/10 px-8 py-3 rounded-lg transition">
+                        Book Now
+                    </a>
+                </div>
+
+                <div class="flex flex-wrap gap-6 text-sm">
+                    <div><i class="fas fa-plane mr-2 gold-text"></i> Airport Delivery</div>
+                    <div><i class="fas fa-map-marker-alt mr-2 gold-text"></i> Maufanga, Tongatapu</div>
+                    <div><i class="fas fa-phone mr-2 gold-text"></i> +676 7205730</div>
+                </div>
+            </div>
+
+            <div class="hidden md:block">
+                <img src="https://emea01.safelinks.protection.outlook.com/?url=https%3A%2F%2Fimages.unsplash.com%2Fphoto-1507525428034-b723cf961d3e%3Fw%3D600%26h%3D400%26fit%3Dcrop&data=05%7C02%7C%7Cc703d0739c824e4d0d5008df404d9dc0%7C84df9e7fe9f640afb435aaaaaaaaaaaa%7C1%7C0%7C639300374231285114%7CUnknown%7CTWFpbGZsb3d8eyJFbXB0eU1hcGkiOnRydWUsIlYiOiIwLjAuMDAwMCIsIlAiOiJXaW4zMiIsIkFOIjoiTWFpbCIsIldUIjoyfQ%3D%3D%7C0%7C%7C%7C&sdata=ggw3TQEeCgXZh4mYmgCeHbhCazsdHFxRPynlv3m8RIA%3D&reserved=0" alt="Tonga Scenery" class="rounded-2xl shadow-2xl">
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Fleet Section -->
+<section id="fleet" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Fleet</h2>
+            <p class="text-gray-600 max-w-2xl mx-auto">
+                Message us to check availability or book in advance to avoid disappointment! Daily & weekly rates available.
+            </p>
+        </div>
+
+        <div id="carsContainer" class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Cars will be loaded here -->
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section id="about" class="py-20 bg-gray-50">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div>
+                <h2 class="text-3xl font-bold text-gray-800 mb-6">About Shah Rental Cars</h2>
+                <p class="text-gray-600 mb-4">
+                    Whether you're visiting Tonga, travelling with family, or need a car for your stay — we've got you covered. Based in Maufanga, Tongatapu, we offer clean, reliable vehicles at fair prices.
+                </p>
+                <p class="text-gray-600 mb-6">
+                    Airport delivery available. Book in advance to secure your vehicle!
+                </p>
+
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-plane gold-text text-xl mb-2"></i>
+                        <h4 class="font-semibold">Airport Pickup</h4>
+                        <p class="text-sm text-gray-500">Delivery available</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-money-bill-wave gold-text text-xl mb-2"></i>
+                        <h4 class="font-semibold">Fair Pricing</h4>
+                        <p class="text-sm text-gray-500">No hidden fees</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-car gold-text text-xl mb-2"></i>
+                        <h4 class="font-semibold">Well Maintained</h4>
+                        <p class="text-sm text-gray-500">Regularly serviced</p>
+                    </div>
+                    <div class="bg-white p-4 rounded-lg shadow-sm">
+                        <i class="fas fa-smile gold-text text-xl mb-2"></i>
+                        <h4 class="font-semibold">Locally Owned</h4>
+                        <p class="text-sm text-gray-500">Serving Tonga</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Quick Contact</h3>
+                <p class="mb-2"><strong>📍 Location:</strong> Maufanga, Tongatapu, Tonga</p>
+                <p class="mb-2"><strong>📞 Phone:</strong> +676 7205730</p>
+                <p class="mb-2"><strong>✉️ Email:</strong> bookings@shahrentalstonga.com</p>
+                <p class="mb-4"><strong>📘 Facebook:</strong> Shah Rental Cars Tongaa</p>
+
+                <div class="bg-yellow-50 p-4 rounded-lg">
+                    <p class="text-sm text-yellow-800">
+                        <i class="fas fa-info-circle mr-2"></i> Message us to check availability — we recommend booking in advance!
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact & Booking Section -->
+<section id="contact" class="py-20 bg-white">
+    <div class="max-w-3xl mx-auto px-4">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold text-gray-800 mb-4">Make a Booking Enquiry</h2>
+            <p class="text-gray-600">
+                Fill in the form below and we'll get back to you as soon as possible!
+            </p>
+        </div>
+
+        <div class="bg-gray-50 p-8 rounded-2xl shadow-lg">
+            <form id="bookingForm" class="space-y-4">
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Your Name *</label>
+                        <input type="text" name="name" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Phone / Email *</label>
+                        <input type="text" name="contact" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Car Interested In</label>
+                    <select name="car" id="carSelect" class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                        <option value="">-- Select a vehicle --</option>
+                    </select>
+                </div>
+
+                <div class="grid md:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Pickup Date *</label>
+                        <input type="date" name="pickupDate" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-1">Return Date *</label>
+                        <input type="date" name="returnDate" required class="w-full px-4 py-2 border border-gray-300 rounded-lg">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Message / Special Requests</label>
+                    <textarea name="message" rows="4" class="w-full px-4 py-2 border border-gray-300 rounded-lg" placeholder="Any extra needs? Airport delivery?"></textarea>
+                </div>
+
+                <button type="submit" class="w-full black-bg hover:opacity-90 gold-text font-medium py-3 rounded-lg transition">
+                    Send Booking Enquiry <i class="fas fa-paper-plane ml-2"></i>
+                </button>
+            </form>
+
+            <div id="successMsg" class="hidden mt-4 p-4 bg-green-50 text-green-700 rounded-lg">
+                <i class="fas fa-check-circle mr-2"></i> Enquiry sent successfully! We'll contact you shortly.
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="black-bg text-white py-12">
+    <div class="max-w-7xl mx-auto px-4">
+        <div class="grid md:grid-cols-4 gap-8">
+            <div>
+                <h4 class="text-xl font-bold mb-2 gold-text">Shah Rental Cars</h4>
+                <p class="text-gray-400 text-sm">Explore the Kingdom with us 🇹🇴</p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Contact</h4>
+                <p class="text-sm text-gray-400">
+                    Maufanga, Tongatapu<br>
+                    +676 7205730
+                </p>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Links</h4>
+                <a href="#home" class="block text-sm text-gray-400 hover:text-yellow-400">Home</a>
+                <a href="#fleet" class="block text-sm text-gray-400 hover:text-yellow-400">Fleet</a>
+                <a href="#contact" class="block text-sm text-gray-400 hover:text-yellow-400">Book Now</a>
+            </div>
+
+            <div>
+                <h4 class="font-semibold mb-3">Follow Us</h4>
+                <a href="#" class="text-gray-400 hover:text-yellow-400">
+                    <i class="fab fa-facebook mr-2"></i> Shah Rental Cars Tongaa
+                </a>
+            </div>
+        </div>
+
+        <div class="border-t border-gray-800 mt-8 pt-8 text-center text-sm text-gray-500">
+            © 2026 Shah Rental Cars Tonga. All rights reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Admin Login Modal -->
+<div id="adminModal" class="modal">
+    <div class="bg-white rounded-xl p-8 max-w-md w-full mx-4 relative">
+        <h3 class="text-xl font-bold mb-6 text-center">Admin Login</h3>
+
+        <div id="loginForm">
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Username</label>
+                <input type="text" id="adminUser" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <div class="mb-4">
+                <label class="block text-sm font-medium mb-1">Password</label>
+                <input type="password" id="adminPass" class="w-full px-4 py-2 border rounded-lg">
+            </div>
+            <button onclick="adminLogin()" class="w-full black-bg gold-text py-2 rounded-lg">Login</button>
+            <p class="text-xs text-gray-500 mt-2 text-center">Default: admin / admin123 — change
